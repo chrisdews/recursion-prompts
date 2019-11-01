@@ -61,8 +61,10 @@ let range = function(x, y) {
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 let exponent = function(base, exp) {
-    if (exp === 0) return 1
-    return exp > 0 ? base * exponent(base, exp - 1) : 1 / (base * exponent(base, -1 * exp-1))
+  if (exp === 0) return 1;
+  return exp > 0
+    ? base * exponent(base, exp - 1)
+    : 1 / (base * exponent(base, -1 * exp - 1));
 };
 
 // 8. Determine if a number is a power of two.
@@ -70,20 +72,22 @@ let exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 let powerOfTwo = function(n) {
-    if (n === 1 || n === 2) return true
-    return n > 2 ? powerOfTwo(n/2) : false
+  if (n === 1 || n === 2) return true;
+  return n > 2 ? powerOfTwo(n / 2) : false;
 };
 
 // 9. Write a function that reverses a string.
 var reverse = function(string) {
-    return string === '' ? '' : reverse(string.substr(1)) + string.charAt(0);
+  return string === "" ? "" : reverse(string.substr(1)) + string.charAt(0);
 };
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
-    if (string.length === 1 || string === '') return true
-    let temp = string.toLowerCase()
-    return temp[0] === temp[temp.length -1] ? palindrome(temp.substr(1, temp.length -2)) : false  
+  if (string.length === 1 || string === "") return true;
+  let temp = string.toLowerCase();
+  return temp[0] === temp[temp.length - 1]
+    ? palindrome(temp.substr(1, temp.length - 2))
+    : false;
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
@@ -91,7 +95,14 @@ var palindrome = function(string) {
 // modulo(5,2) // 1
 // modulo(17,5) // 2
 // modulo(22,6) // 4
-var modulo = function(x, y) {};
+var modulo = function(x, y) {
+  if (y === 0) return NaN;
+  // convert negative cases to positive
+  if (x < 0) return -modulo(-x, y);
+  if (y < 0) return modulo(x, -y);
+  if (x < y) return x;
+  return modulo(x - y, y);
+};
 
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
