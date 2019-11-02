@@ -142,11 +142,17 @@ var gcd = function(x, y) {
 // both are identical.
 // compareStr('house', 'houses') // false
 // compareStr('tomato', 'tomato') // true
-var compareStr = function(str1, str2) {};
+var compareStr = function(str1, str2) {
+    if (str1 === '' && str2 === '') return true
+    return str1.charAt(0) === str2.charAt(0) ? compareStr(str1.substr(1), str2.substr(1)) : false
+};
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
-var createArray = function(str) {};
+var createArray = function(str) {
+    if (str.length === 1) return [str.charAt(0)]
+    return [str.charAt(0)].concat(createArray(str.substr(1)))
+};
 
 // 17. Reverse the order of an array
 var reverseArr = function(array) {};
